@@ -51,8 +51,8 @@ extern void execute_12(char*, char *);
 extern void execute_13(char*, char *);
 extern void transaction_0(char*, char*, unsigned, unsigned, unsigned);
 extern void vhdl_transfunc_eventcallback(char*, char*, unsigned, unsigned, unsigned, char *);
-extern void transaction_3(char*, char*, unsigned, unsigned, unsigned);
-funcp funcTab[8] = {(funcp)execute_37, (funcp)execute_17, (funcp)execute_18, (funcp)execute_12, (funcp)execute_13, (funcp)transaction_0, (funcp)vhdl_transfunc_eventcallback, (funcp)transaction_3};
+extern void transaction_2(char*, char*, unsigned, unsigned, unsigned);
+funcp funcTab[8] = {(funcp)execute_37, (funcp)execute_17, (funcp)execute_18, (funcp)execute_12, (funcp)execute_13, (funcp)transaction_0, (funcp)vhdl_transfunc_eventcallback, (funcp)transaction_2};
 const int NumRelocateId= 8;
 
 void relocate(char *dp)

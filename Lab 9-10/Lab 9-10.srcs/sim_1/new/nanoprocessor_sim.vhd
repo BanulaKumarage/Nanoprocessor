@@ -13,14 +13,16 @@ component Nanoprocessor
             ZERO_FLAG : out STD_LOGIC; -- zero
             OVERFLOW : out STD_LOGIC; -- c
             S_7_Seg_val : out STD_LOGIC_VECTOR (6 downto 0); 
-            S_7_Seg_sign : out STD_LOGIC_VECTOR (6 downto 0);
-            S_LED : out STD_LOGIC_VECTOR (3 downto 0)
+--            S_7_Seg_sign : out STD_LOGIC_VECTOR (6 downto 0);
+            Sign: out STD_LOGIC;
+            S_LED : out STD_LOGIC_VECTOR (3 downto 0);
+            an : out std_logic_vector(3 downto 0)
              );
             
 end component;
 signal RESET,CLK : std_logic;
-signal ZERO_FLAG,OVERFLOW : std_logic;
-signal S_7_Seg_val,S_7_Seg_sign : std_logic_vector(6 downto 0);
+signal ZERO_FLAG,OVERFLOW, Sign : std_logic;
+signal S_7_Seg_val : std_logic_vector(6 downto 0);
 signal S_LED : std_logic_vector(3 downto 0);
 constant clock_period: time := 10ns;
 
@@ -31,7 +33,7 @@ UUT : Nanoprocessor
                 ZERO_FLAG=>ZERO_FLAG,
                 OVERFLOW=>OVERFLOW,
                 S_7_Seg_val=> S_7_Seg_val,
-                S_7_Seg_sign => S_7_Seg_sign,
+                Sign => Sign,
                 S_LED=> S_LED
 
     );

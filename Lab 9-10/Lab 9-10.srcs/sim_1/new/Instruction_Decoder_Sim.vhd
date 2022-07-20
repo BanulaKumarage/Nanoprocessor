@@ -83,10 +83,6 @@ PROCESS
    -- Index: 190215X : 101110011100000111
    -- Index: 190137J : 101110011010111001
    
-   -- Index: 190152B : 101110011011001000
-   -- Index: 190495D : 101110100000011111
-   -- Index: 190507U : 101110100000101011
-   
         Reg_val<="0000";
 		Instruction <= "101110000000";
 		WAIT FOR 100 ns;
@@ -103,5 +99,7 @@ PROCESS
 		Reg_val<="0100";
         Instruction <= "111100000111";
         WAIT;
+
+
    END PROCESS;
 end Behavioral;

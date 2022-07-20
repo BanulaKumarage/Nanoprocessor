@@ -7,8 +7,10 @@ entity Nanoprocessor is
             ZERO_FLAG : out STD_LOGIC;
             OVERFLOW : out STD_LOGIC;
             S_7_Seg_val : out STD_LOGIC_VECTOR (6 downto 0);
-            S_7_Seg_sign : out STD_LOGIC_VECTOR (6 downto 0);
-            S_LED : out STD_LOGIC_VECTOR (3 downto 0)
+--            S_7_Seg_sign : out STD_LOGIC_VECTOR (6 downto 0);
+            Sign: out STD_LOGIC;
+            S_LED : out STD_LOGIC_VECTOR (3 downto 0);
+            an : out std_logic_vector(3 downto 0)
              );
     end Nanoprocessor;
 
@@ -95,7 +97,8 @@ end component;
 component display_unit is
     port(Reg_val : in STD_LOGIC_VECTOR (3 downto 0);
          S_7_Seg_val : out STD_LOGIC_VECTOR (6 downto 0);
-         S_7_Seg_sign : out STD_LOGIC_VECTOR (6 downto 0));
+--         S_7_Seg_sign : out STD_LOGIC_VECTOR (6 downto 0);
+         Sign : out STD_LOGIC);
 end component;
 
 component ProgramRom is
@@ -113,7 +116,7 @@ signal CLK_OUT,CLK_OUT_2: std_logic;
 signal R0,R1,R2,R3,R4,R5,R6,R7 : std_logic_vector(3 downto 0); 
 signal IMD_VAL, ADD_SUB_RES, SEL_REG_VAL, MUX_A_OUT,MUX_B_OUT:std_logic_vector(3 downto 0);
 signal REG_SEL_1, REG_SEL_2, REG_ENABLE,JUMP_ADDR : std_logic_vector(2 downto 0);
-signal JUMP_FLAG, LOAD_SELECT,SUB_SEL: std_logic;
+signal JUMP_FLAG, LOAD_SELECT,SUB_SEL, zero_F: std_logic;
 signal INSTRUCTION : std_logic_vector(11 downto 0);
 signal INCR_ADDR, NEXT_ADDR, M_SEL: std_logic_vector(2 downto 0);
 
@@ -147,7 +150,8 @@ ProgramRom_0: ProgramRom
 display_unit_0: display_unit 
     Port map(Reg_val => R7, 
         S_7_Seg_val => S_7_Seg_val,
-        S_7_Seg_sign => S_7_Seg_sign
+--        S_7_Seg_sign => S_7_Seg_sign,
+        Sign => Sign
         );
 
 MUX_2way_4bit_0: MUX_2way_4bit 
@@ -182,7 +186,7 @@ Add_sub_0: Add_sub
            Ctrl => SUB_SEL,
            S => ADD_SUB_RES,
            Overflow => OVERFLOW,
-           Z_flag => ZERO_FLAG
+           Z_flag => zero_F
            );
 
 Reg_bank_0: Reg_bank 
@@ -230,5 +234,6 @@ MUX_8_to_1_B: MUX_8_to_1
                       
 
 S_LED <= R7;
-
+ZERO_FLAG <= (not (INSTRUCTION(11) or INSTRUCTION(10))) and zero_F;
+an <= "1110";
 end Behavioral;

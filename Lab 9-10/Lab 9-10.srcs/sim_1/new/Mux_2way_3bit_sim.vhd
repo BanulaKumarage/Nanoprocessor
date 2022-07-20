@@ -8,10 +8,6 @@ end Mux_2way_3bit_sim;
 
 architecture Behavioral of Mux_2way_3bit_sim is
 component Mux_2way_3bit
---    port(   Adder_3 : in STD_LOGIC_VECTOR (2 downto 0);
---            JUMP_TO : in STD_LOGIC_VECTOR (2 downto 0);
---            O : out STD_LOGIC_VECTOR (2 downto 0);
---            S : in STD_LOGIC);
 Port ( Jump_addr : in STD_LOGIC_VECTOR (2 downto 0);
        Incr_addr : in STD_LOGIC_VECTOR (2 downto 0);
        Jump_flag : in STD_LOGIC;
@@ -33,9 +29,6 @@ begin
 -- Index: 190215X : 101110011100000111
 -- Index: 190137J : 101110011010111001
 
--- Index: 190152B : 101110011011001000
--- Index: 190495D : 101110100000011111
--- Index: 190507U : 101110100000101011
 
 Incr_addr<="001";
 Jump_addr<="100";

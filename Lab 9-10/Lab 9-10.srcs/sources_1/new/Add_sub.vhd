@@ -88,5 +88,4 @@ begin
     S <= RES;
     Z_flag <= not (RES(0) or RES(1) or RES(2) or RES(3));
     Overflow <= not (Ctrl) and ((A(3) XNOR B(3)) AND (A(3) XOR RES(3)));       
-    --Overflow <= ((A(3) XOR Ctrl) XNOR B(3)) AND (A(3) XOR RES(3));                      
 end Behavioral;

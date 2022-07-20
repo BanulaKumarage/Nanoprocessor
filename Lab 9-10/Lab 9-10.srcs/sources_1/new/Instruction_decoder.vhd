@@ -51,7 +51,7 @@ component Decoder_2_to_4
           EN: in std_logic;
           Y: out std_logic_vector(3 downto 0));
 end component;
-SIGNAL MOV, ADD, NEG, JZR: std_logic;
+SIGNAL MOV, ADD, NEG, JZR, add_or_neg, add_or_neg_or_jzr: std_logic;
 begin
 Decoder_2_to_40 : Decoder_2_to_4
    PORT MAP(I => Instruction(11 downto 10),
@@ -60,12 +60,13 @@ Decoder_2_to_40 : Decoder_2_to_4
             Y(2) => MOV,
             Y(3) => JZR,
             EN => '1');
-            
+add_or_neg <= ADD OR NEG;
+add_or_neg_or_jzr <= add_or_neg or JZR;           
 load_select <= MOV;
 Reg_enable <= Instruction(9 downto 7);
 imd_val <= Instruction(3 downto 0);
-reg_sel_1 <= Instruction(9 downto 7);
-reg_sel_2 <= Instruction(6 downto 4);
+reg_sel_1 <= Instruction(9 downto 7) and (add_or_neg_or_jzr,add_or_neg_or_jzr,add_or_neg_or_jzr) ;
+reg_sel_2 <= Instruction(6 downto 4) and (add_or_neg,add_or_neg,add_or_neg);
 sub_sel <= NEG;
 jump_addr<= Instruction(2 downto 0);
 jump_flag <= JZR and not(Reg_val(0) or Reg_val(1) or Reg_val(2) or Reg_val(3));

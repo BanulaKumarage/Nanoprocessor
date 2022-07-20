@@ -10,19 +10,16 @@ Component TBA
     port(
                A : in STD_LOGIC_VECTOR (2 downto 0);
                C_in : in std_logic; 
-               S : out STD_LOGIC_VECTOR (2 downto 0);
-               C_out : out STD_LOGIC
+               S : out STD_LOGIC_VECTOR (2 downto 0)
 );
 end component;
 SIGNAL A : std_logic_vector(2 downto 0);
 signal C_in : std_logic;
-signal C_out : std_logic;
 signal S : std_logic_vector(2 downto 0);
 begin
 UUT: TBA PORT MAP(
     A(2 downto 0)=>A(2 downto 0),
     C_in=>C_in,
-    C_out=>C_out,
     S(2 downto 0)=>S(2 downto 0)
 );
 process
